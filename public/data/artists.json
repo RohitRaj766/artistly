@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Neha Kakkar",
+    "category": "Singer",
+    "location": "Delhi",
+    "price": "₹1L–3L"
+  },
+  {
+    "id": 2,
+    "name": "DJ Chetas",
+    "category": "DJ",
+    "location": "Mumbai",
+    "price": "₹2L–4L"
+  },
+  {
+    "id": 3,
+    "name": "Shakti Mohan",
+    "category": "Dancer",
+    "location": "Bangalore",
+    "price": "₹1.5L–3L"
+  },
+  {
+    "id": 4,
+    "name": "Sandeep Maheshwari",
+    "category": "Speaker",
+    "location": "Gurgaon",
+    "price": "₹5L–7L"
+  }
+]
