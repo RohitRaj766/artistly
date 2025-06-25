@@ -6,7 +6,7 @@ import { useFilterContext } from '@/context/FilterContext'
 import ArtistCard from '@/components/ArtistCard'
 import FilterBlock from '@/components/FilterBlock'
 import { Button } from '@/components/ui/button'
-import { FilterProvider } from '@/context/FilterContext'
+
 
 type Artist = {
   _id?: string
@@ -95,7 +95,7 @@ export default function ArtistListingPage() {
   const totalPages = Math.ceil(filteredArtists.length / artistsPerPage)
 
   return (
-    <FilterProvider>
+
     <section className="max-w-6xl mx-auto px-4 py-10 space-y-8">
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
@@ -156,6 +156,6 @@ export default function ArtistListingPage() {
         </>
       )}
     </section>
-    </FilterProvider>
+
   )
 }
