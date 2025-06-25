@@ -8,14 +8,14 @@ import { Pagination, PaginationContent, PaginationItem, PaginationNext, Paginati
 import { Music, Mic, Users, Volume2 } from 'lucide-react' // lucide icons are default with shadcn
 
 const categories = [
-  { title: 'Singers', description: 'Vocal talent for weddings, concerts & corporate shows', href: '/artists?category=Singers', icon: Mic },
+  { title: 'Singers', description: 'Vocal talent for weddings, concerts & corporate shows', href: '/artists?category=Singer', icon: Mic },
   { title: 'DJs', description: 'Energize parties with popular DJs', href: '/artists?category=DJs', icon: Music },
-  { title: 'Dancers', description: 'Cultural to modern performances by expert dancers', href: '/artists?category=Dancers', icon: Users },
-  { title: 'Speakers', description: 'Motivational and industry speakers for your event', href: '/artists?category=Speakers', icon: Volume2 },
-  { title: 'Dancers', description: 'Amazing cultural and freestyle performances', href: '/artists?category=Dancers', icon: Users },
-  { title: 'Singers', description: 'From Bollywood to Western vocals', href: '/artists?category=Singers', icon: Mic },
-  { title: 'DJs', description: 'High-energy music for your event', href: '/artists?category=DJs', icon: Music },
-  { title: 'Speakers', description: 'Thought leaders and storytellers', href: '/artists?category=Speakers', icon: Volume2 },
+  { title: 'Dancers', description: 'Cultural to modern performances by expert dancers', href: '/artists?category=Dancer', icon: Users },
+  { title: 'Speakers', description: 'Motivational and industry speakers for your event', href: '/artists?category=Speaker', icon: Volume2 },
+  { title: 'Dancers', description: 'Amazing cultural and freestyle performances', href: '/artists?category=Dancer', icon: Users },
+  { title: 'Singers', description: 'From Bollywood to Western vocals', href: '/artists?category=Singer', icon: Mic },
+  { title: 'DJs', description: 'High-energy music for your event', href: '/artists?category=DJ', icon: Music },
+  { title: 'Speakers', description: 'Thought leaders and storytellers', href: '/artists?category=Speaker', icon: Volume2 },
 ]
 
 const ITEMS_PER_PAGE = 4

@@ -4,6 +4,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { FilterProvider } from '@/context/FilterContext'
 import { ThemeProvider } from 'next-themes'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <FilterProvider>
             <Header />
+            <ThemeToggle />
             <main className="min-h-screen">{children}</main>
             <Footer />
           </FilterProvider>

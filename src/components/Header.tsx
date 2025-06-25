@@ -40,8 +40,6 @@ export function Header() {
           >
             Signup
           </Link>
-
-          <ThemeToggle />
         </nav>
 
         {/* Mobile Menu Button */}

@@ -8,23 +8,135 @@
   },
   {
     "id": 2,
+    "name": "Arijit Singh",
+    "category": "Singer",
+    "location": "Mumbai",
+    "price": "₹5L–7L"
+  },
+  {
+    "id": 3,
+    "name": "Jonita Gandhi",
+    "category": "Singer",
+    "location": "Bangalore",
+    "price": "₹2L–4L"
+  },
+  {
+    "id": 4,
     "name": "DJ Chetas",
     "category": "DJ",
     "location": "Mumbai",
     "price": "₹2L–4L"
   },
   {
-    "id": 3,
+    "id": 5,
+    "name": "DJ NYK",
+    "category": "DJ",
+    "location": "Pune",
+    "price": "₹1L–3L"
+  },
+  {
+    "id": 6,
+    "name": "DJ Shadow Dubai",
+    "category": "DJ",
+    "location": "Hyderabad",
+    "price": "₹3L–5L"
+  },
+  {
+    "id": 7,
     "name": "Shakti Mohan",
     "category": "Dancer",
     "location": "Bangalore",
     "price": "₹1.5L–3L"
   },
   {
-    "id": 4,
+    "id": 8,
+    "name": "Remo D’Souza",
+    "category": "Dancer",
+    "location": "Mumbai",
+    "price": "₹5L–7L"
+  },
+  {
+    "id": 9,
+    "name": "Punit Pathak",
+    "category": "Dancer",
+    "location": "Delhi",
+    "price": "₹2L–4L"
+  },
+  {
+    "id": 10,
     "name": "Sandeep Maheshwari",
     "category": "Speaker",
     "location": "Gurgaon",
     "price": "₹5L–7L"
+  },
+  {
+    "id": 11,
+    "name": "Dr. Vivek Bindra",
+    "category": "Speaker",
+    "location": "Noida",
+    "price": "₹5L–7L"
+  },
+  {
+    "id": 12,
+    "name": "Priya Kumar",
+    "category": "Speaker",
+    "location": "Chennai",
+    "price": "₹2L–4L"
+  },
+  {
+    "id": 13,
+    "name": "Jubin Nautiyal",
+    "category": "Singer",
+    "location": "Dehradun",
+    "price": "₹3L–5L"
+  },
+  {
+    "id": 14,
+    "name": "DJ Aqeel",
+    "category": "DJ",
+    "location": "Goa",
+    "price": "₹4L–6L"
+  },
+  {
+    "id": 15,
+    "name": "Terrence Lewis",
+    "category": "Dancer",
+    "location": "Kolkata",
+    "price": "₹3L–5L"
+  },
+  {
+    "id": 16,
+    "name": "Nitya Menon",
+    "category": "Speaker",
+    "location": "Bangalore",
+    "price": "₹1L–3L"
+  },
+  {
+    "id": 17,
+    "name": "Benny Dayal",
+    "category": "Singer",
+    "location": "Chennai",
+    "price": "₹2L–4L"
+  },
+  {
+    "id": 18,
+    "name": "DJ Suketu",
+    "category": "DJ",
+    "location": "Ahmedabad",
+    "price": "₹1.5L–3L"
+  },
+  {
+    "id": 19,
+    "name": "Raghav Juyal",
+    "category": "Singer",
+    "location": "Dehradun",
+    "price": "₹2L–4L"
+  },
+  {
+    "id": 20,
+    "name": "Kiran Bedi",
+    "category": "Singer",
+    "location": "Puducherry",
+    "price": "₹3L–5L"
   }
 ]
