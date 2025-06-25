@@ -11,7 +11,7 @@ import { Artist } from '@/types/Artist';
 
 export default function ArtistListingContent() {
   const searchParams = useSearchParams();
-  const { category, setCategory, location, price } = useFilterContext();
+  const { category, setCategory, location, fee } = useFilterContext();
 
   const [artists, setArtists] = useState<Artist[]>([]);
   const [filteredArtists, setFilteredArtists] = useState<Artist[]>([]);
@@ -32,13 +32,13 @@ export default function ArtistListingContent() {
         const res = await fetch('/api/onboard');
         const data = await res.json();
         const formatted = data.map((artist: Artist, index: number) => ({
-          id: artist._id || index,
+          _id: artist._id || index,
           name: artist.name,
           bio: artist.bio,
           categories: artist.categories || [],
           languages: artist.languages,
           location: artist.location,
-          price: artist.price,
+          fee: artist.fee,
           image: artist.image,
         }));
         setArtists(formatted);
@@ -63,12 +63,12 @@ export default function ArtistListingContent() {
         a.location.toLowerCase().includes(location.toLowerCase())
       );
     }
-    if (price) {
-      result = result.filter((a) => a.price.includes(price));
+    if (fee) {
+      result = result.filter((a) => a.fee.includes(fee));
     }
     setFilteredArtists(result);
     setCurrentPage(1);
-  }, [category, location, price, artists]);
+  }, [category, location, fee, artists]);
 
   const indexOfLast = currentPage * artistsPerPage;
   const indexOfFirst = indexOfLast - artistsPerPage;
@@ -95,7 +95,9 @@ export default function ArtistListingContent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentArtists.length > 0 ? (
               currentArtists.map((artist) => (
-                <ArtistCard key={artist._id} artist={artist} />
+                <>
+                <ArtistCard key={artist._id?.toString()} artist={artist} />
+                </>
               ))
             ) : (
               <p className="text-center text-gray-500 dark:text-gray-300 col-span-full py-10">

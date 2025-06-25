@@ -5,10 +5,10 @@ import { createContext, useContext, useState, ReactNode, useEffect } from 'react
 type FilterContextType = {
   category: string
   location: string
-  price: string
+  fee: string
   setCategory: (val: string) => void
   setLocation: (val: string) => void
-  setPrice: (val: string) => void
+  setFee: (val: string) => void
   clearFilters: () => void
 }
 
@@ -23,7 +23,7 @@ export function useFilterContext() {
 export function FilterProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
-  const [price, setPrice] = useState('')
+  const [fee, setFee] = useState('')
 
   useEffect(() => {
    
@@ -31,23 +31,23 @@ export function FilterProvider({ children }: { children: ReactNode }) {
       const params = new URLSearchParams(window.location.search)
       const queryCategory = params.get('category') || ''
       const queryLocation = params.get('location') || ''
-      const queryPrice = params.get('price') || ''
+      const queryPrice = params.get('fee') || ''
 
       setCategory(queryCategory)
       setLocation(queryLocation)
-      setPrice(queryPrice)
+      setFee(queryPrice)
     }
   }, [])
 
   function clearFilters() {
     setCategory('')
     setLocation('')
-    setPrice('')
+    setFee('')
   }
 
   return (
     <FilterContext.Provider
-      value={{ category, location, price, setCategory, setLocation, setPrice, clearFilters }}
+      value={{ category, location, fee, setCategory, setLocation, setFee, clearFilters }}
     >
       {children}
     </FilterContext.Provider>

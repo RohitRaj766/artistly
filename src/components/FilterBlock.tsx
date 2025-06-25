@@ -18,8 +18,8 @@ export default function FilterBlock() {
     setCategory,
     location,
     setLocation,
-    price,
-    setPrice,
+    fee,
+    setFee,
     clearFilters,
   } = useFilterContext()
 
@@ -60,21 +60,21 @@ export default function FilterBlock() {
         />
       </div>
 
-      {/* Price Filter + Reset */}
+      {/* Fee Filter + Reset */}
       <div className="flex flex-col space-y-2">
-        <Label htmlFor="price" className="text-foreground">
-          Price Range
+        <Label htmlFor="fee" className="text-foreground">
+          Fee Range
         </Label>
         <div className="flex items-center gap-2">
           <Select
-            value={price || 'all'}
-            onValueChange={(val) => setPrice(val === 'all' ? '' : val)}
+            value={fee || 'all'}
+            onValueChange={(val) => setFee(val === 'all' ? '' : val)}
           >
-            <SelectTrigger id="price" className="flex-grow">
-              <SelectValue placeholder="All Prices" />
+            <SelectTrigger id="fee" className="flex-grow">
+              <SelectValue placeholder="All fee" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Prices</SelectItem>
+              <SelectItem value="all">All fees</SelectItem>
               <SelectItem value="₹1L–3L">₹1L–3L</SelectItem>
               <SelectItem value="₹2L–4L">₹2L–4L</SelectItem>
               <SelectItem value="₹5L–7L">₹5L–7L</SelectItem>

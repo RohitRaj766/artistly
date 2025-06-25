@@ -54,7 +54,7 @@ export default function ArtistTable({
               <td className="p-3">{artist.name}</td>
               <td className="p-3">{artist.categories.join(', ')}</td>
               <td className="p-3">{artist.location}</td>
-              <td className="p-3">{artist.price}</td>
+              <td className="p-3">{artist.fee}</td>
               <td className="p-3">{artist.languages.join(', ')}</td>
               {onDelete && artist._id && (
                 <td className="p-3">
