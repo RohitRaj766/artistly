@@ -1,5 +1,5 @@
-// lib/auth.ts
-import { NextRequest, NextResponse } from 'next/server'
+
+import { NextRequest } from 'next/server'
 import jwt from 'jsonwebtoken'
 
 export function withAuth(req: NextRequest) {

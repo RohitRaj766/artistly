@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
-import { Music, Mic, Users, Volume2 } from 'lucide-react' // lucide icons are default with shadcn
+import { Music, Mic, Users, Volume2 } from 'lucide-react' 
 
 const categories = [
   { title: 'Singers', description: 'Vocal talent for weddings, concerts & corporate shows', href: '/artists?category=Singer', icon: Mic },

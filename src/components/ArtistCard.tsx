@@ -23,6 +23,7 @@ export default function ArtistCard({ artist }: Props) {
     src={artist.image || '/avatarDef.jpeg'} 
     alt={artist.name}
     className="w-full h-48 object-cover rounded-t"
+    loading='lazy'
   />
 </div>
 

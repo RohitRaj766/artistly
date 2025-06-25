@@ -1,22 +1,3 @@
-type Artist = {
-  _id?: string
-  name: string
-  bio: string
-  categories: string[]
-  languages: string[]
-  fee: string
-  location: string
-  image?: string
-}
-
-type Props = {
-  artists: Artist[]
-  onDelete?: (id: string) => void
-  page: number
-  pageSize: number
-  onPageChange: (newPage: number) => void
-}
-
 export default function ArtistTable({
   artists,
   onDelete,
@@ -29,9 +10,9 @@ export default function ArtistTable({
   const currentPageData = artists.slice(startIndex, startIndex + pageSize)
 
   return (
-    <div className="overflow-x-auto border rounded-lg">
-      <table className="min-w-full bg-white text-sm">
-        <thead className="bg-indigo-50 border-b text-left">
+    <div className="overflow-x-auto border rounded-lg dark:border-gray-700">
+      <table className="min-w-full bg-white text-sm dark:bg-gray-800 dark:text-gray-200">
+        <thead className="bg-indigo-50 border-b text-left dark:bg-gray-700 dark:border-gray-600">
           <tr>
             <th className="p-3">Profile</th>
             <th className="p-3">Name</th>
@@ -44,7 +25,7 @@ export default function ArtistTable({
         </thead>
         <tbody>
           {currentPageData.map((artist) => (
-            <tr key={artist._id} className="border-t hover:bg-gray-50">
+            <tr key={artist._id} className="border-t hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
               <td className="p-3">
                 {artist.image ? (
                   <img
@@ -54,7 +35,7 @@ export default function ArtistTable({
                     loading="lazy"
                   />
                 ) : (
-                  <div className="w-10 h-10 bg-gray-200 rounded" />
+                  <div className="w-10 h-10 bg-gray-200 rounded dark:bg-gray-600" />
                 )}
               </td>
               <td className="p-3">{artist.name}</td>
@@ -78,23 +59,23 @@ export default function ArtistTable({
       </table>
 
       {/* Pagination Controls */}
-      <div className="flex justify-between items-center p-4">
+      <div className="flex justify-between items-center p-4 dark:bg-gray-800">
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={page === 1}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50 cursor-pointer"
+          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50 cursor-pointer dark:bg-gray-700"
         >
           Previous
         </button>
 
-        <span className="text-sm">
+        <span className="text-sm dark:text-gray-300">
           Page {page} of {totalPages}
         </span>
 
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={page === totalPages}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50 cursor-pointer"
+          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50 cursor-pointer dark:bg-gray-700"
         >
           Next
         </button>

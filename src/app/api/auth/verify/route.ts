@@ -12,6 +12,7 @@ export async function GET(req: NextRequest) {
     jwt.verify(token, process.env.JWT_SECRET!)
     return NextResponse.json({ authenticated: true })
   } catch (err) {
+    console.log(err)
     return NextResponse.json({ authenticated: false }, { status: 401 })
   }
 }

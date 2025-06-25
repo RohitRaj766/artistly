@@ -10,16 +10,12 @@ import { Button } from '@/components/ui/button'
 
 export default function ArtistListingPage() {
   const searchParams = useSearchParams()
-  const {
-    category,
-    setCategory,
-    location,
-    price,
-  } = useFilterContext()
+  const { category, setCategory, location, price } = useFilterContext()
 
   const [artists, setArtists] = useState<Artist[]>([])
   const [filteredArtists, setFilteredArtists] = useState<Artist[]>([])
   const [currentPage, setCurrentPage] = useState(1)
+  const [loading, setLoading] = useState(true) // 🟡 Add loading state
   const artistsPerPage = 6
 
   // Set initial category from URL
@@ -30,35 +26,35 @@ export default function ArtistListingPage() {
     }
   }, [searchParams, setCategory])
 
+  // Load artist data from MongoDB
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const res = await fetch('/api/onboard')
+        const data = await res.json()
 
-// Load artist data from MongoDB
-useEffect(() => {
-  const fetchArtists = async () => {
-    try {
-      const res = await fetch('/api/onboard')
-      const data = await res.json()
+        const formatted = data.map((artist: unknown, index: number) => ({
+          id: artist._id || index,
+          name: artist.name,
+          bio: artist.bio,
+          category: artist.categories?.[0] || '',
+          languages: artist.languages,
+          location: artist.location,
+          price: artist.fee,
+          image: artist.image,
+        }))
 
-      const formatted = data.map((artist: any, index: number) => ({
-        id: artist._id || index,
-        name: artist.name,
-        bio: artist.bio,
-        category: artist.categories?.[0] || '',
-        languages: artist.languages,
-        location: artist.location,
-        price: artist.fee,
-        image: artist.image,
-      }))
-
-      setArtists(formatted)
-      setFilteredArtists(formatted)
-    } catch (error) {
-      console.error('Error loading artists:', error)
+        setArtists(formatted)
+        setFilteredArtists(formatted)
+      } catch (error) {
+        console.error('Error loading artists:', error)
+      } finally {
+        setLoading(false) 
+      }
     }
-  }
 
-  fetchArtists()
-}, [])
-
+    fetchArtists()
+  }, [])
 
   // Apply filters
   useEffect(() => {
@@ -71,7 +67,7 @@ useEffect(() => {
     if (price) result = result.filter((a) => a.price.includes(price))
 
     setFilteredArtists(result)
-    setCurrentPage(1) // Reset to first page on filter change
+    setCurrentPage(1)
   }, [category, location, price, artists])
 
   // Pagination logic
@@ -95,42 +91,51 @@ useEffect(() => {
       {/* Filter */}
       <FilterBlock />
 
-      {/* Results */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentArtists.length > 0 ? (
-          currentArtists.map((artist) => (
-            <ArtistCard key={artist.id} artist={artist} />
-          ))
-        ) : (
-          <p className="text-center text-gray-500 dark:text-gray-300 col-span-full py-10">
-            No artists match your filters.
-          </p>
-        )}
-      </div>
-
-      {/* Pagination Controls */}
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-4 mt-8">
-          <Button
-            className = "cursor-pointer"
-            variant="outline"
-            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            ← Prev
-          </Button>
-          <span className="text-gray-700 dark:text-gray-200 text-sm">
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button
-            variant="outline"
-            className = "cursor-pointer"
-            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-            disabled={currentPage === totalPages}
-          >
-            Next →
-          </Button>
+      {/* Loader or Results */}
+      {loading ? (
+        <div className="text-center text-gray-500 dark:text-gray-300 py-20">
+          Loading artists...
         </div>
+      ) : (
+        <>
+          {/* Results */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {currentArtists.length > 0 ? (
+              currentArtists.map((artist) => (
+                <ArtistCard key={artist.id} artist={artist} />
+              ))
+            ) : (
+              <p className="text-center text-gray-500 dark:text-gray-300 col-span-full py-10">
+                No artists match your filters.
+              </p>
+            )}
+          </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-4 mt-8">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                disabled={currentPage === 1}
+                className='cursor-pointer'
+              >
+                ← Prev
+              </Button>
+              <span className="text-gray-700 dark:text-gray-200 text-sm">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className='cursor-pointer'
+              >
+                Next →
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </section>
   )

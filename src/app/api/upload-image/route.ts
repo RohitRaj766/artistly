@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { v2 as cloudinary } from 'cloudinary'
-import { IncomingForm } from 'formidable'
 import fs from 'fs'
-import { promisify } from 'util'
+
 
 export const config = {
   api: {
@@ -16,10 +15,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET!,
 })
 
-const readFile = promisify(fs.readFile)
+
 
 export async function POST(req: NextRequest) {
-  const form = new IncomingForm({ keepExtensions: true })
 
   const buffer = await req.arrayBuffer()
   const body = Buffer.from(buffer)
