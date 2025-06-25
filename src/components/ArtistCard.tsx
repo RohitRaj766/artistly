@@ -1,5 +1,12 @@
 import { Artist } from '@/types'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MapPin, DollarSign, User } from 'lucide-react'
 
@@ -9,7 +16,17 @@ type Props = {
 
 export default function ArtistCard({ artist }: Props) {
   return (
-    <Card className="hover:shadow-md transition-shadow h-full">
+    <Card className="hover:shadow-md transition-shadow h-full overflow-hidden">
+      {/* Artist Image */}
+     <div className="h-48 w-full overflow-hidden">
+  <img
+    src={artist.image || '/avatarDef.jpeg'} 
+    alt={artist.name}
+    className="w-full h-48 object-cover rounded-t"
+  />
+</div>
+
+
       <CardHeader>
         <CardTitle className="text-indigo-700 flex items-center gap-2">
           <User className="w-5 h-5 text-indigo-500" />

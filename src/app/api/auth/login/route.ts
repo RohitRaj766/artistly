@@ -1,20 +1,16 @@
-import { NextResponse } from 'next/server'
-import bcrypt from 'bcryptjs'
+import { NextRequest, NextResponse } from 'next/server'
 import { connectToDatabase } from '@/lib/mongodb'
-import User from '@/models/User'
-import { generateToken } from '@/lib/auth'
+import jwt from 'jsonwebtoken'
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const { id, passcode } = await req.json()
+  if (id !== 'manager' || passcode !== '123456') {
+    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+  }
+
   await connectToDatabase()
-  const { email, password, role } = await req.json()
-
-  const user = await User.findOne({ email, role })
-  if (!user) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
-
-  const isMatch = await bcrypt.compare(password, user.password)
-  if (!isMatch) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
-
-  const token = generateToken({ id: user._id, role: user.role })
-
-  return NextResponse.json({ token, user: { name: user.name, role: user.role, email: user.email } })
+  const token = jwt.sign({ role: 'manager' }, process.env.JWT_SECRET!, { expiresIn: '4h' })
+  const res = NextResponse.json({ message: 'Logged in' })
+  res.cookies.set('authToken', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+  return res
 }

@@ -29,16 +29,12 @@ export function Header() {
           <Link href="/onboard" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             Onboard Artist
           </Link>
-
-          {/* Auth Links */}
-          <Link href="/login" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition">
-            Login
-          </Link>
+      
           <Link
-            href="/signup"
+            href="/login"
             className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition"
           >
-            Signup
+            Manager
           </Link>
         </nav>
 
@@ -54,7 +50,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav className="md:hidden px-4 pb-4 text-gray-700 dark:text-gray-200 text-sm font-medium space-y-2">
+        <nav className="md:hidden px-4 pb-4 text-gray-700 dark:text-gray-200 text-sm font-medium space-y-2 flex justify-center items-center flex-col gap-1">
           <Link href="/" onClick={closeMenu} className="block hover:text-indigo-600 dark:hover:text-indigo-400">
             Home
           </Link>
@@ -65,16 +61,11 @@ export function Header() {
             Onboard Artist
           </Link>
 
-          {/* Auth Links */}
-          <Link href="/login" onClick={closeMenu} className="block hover:text-indigo-600 dark:hover:text-indigo-400">
-            Login
-          </Link>
-          <Link
-            href="/signup"
-            onClick={closeMenu}
-            className="block bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition text-center"
+             <Link
+            href="/login"
+            className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition min-w-[80%] text-center"
           >
-            Signup
+            Manager
           </Link>
 
           <div className="pt-2">

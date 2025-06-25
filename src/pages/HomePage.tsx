@@ -9,7 +9,7 @@ import { Music, Mic, Users, Volume2 } from 'lucide-react' // lucide icons are de
 
 const categories = [
   { title: 'Singers', description: 'Vocal talent for weddings, concerts & corporate shows', href: '/artists?category=Singer', icon: Mic },
-  { title: 'DJs', description: 'Energize parties with popular DJs', href: '/artists?category=DJs', icon: Music },
+  { title: 'DJs', description: 'Energize parties with popular DJs', href: '/artists?category=DJ', icon: Music },
   { title: 'Dancers', description: 'Cultural to modern performances by expert dancers', href: '/artists?category=Dancer', icon: Users },
   { title: 'Speakers', description: 'Motivational and industry speakers for your event', href: '/artists?category=Speaker', icon: Volume2 },
   { title: 'Dancers', description: 'Amazing cultural and freestyle performances', href: '/artists?category=Dancer', icon: Users },

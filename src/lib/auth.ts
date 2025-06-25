@@ -1,14 +1,12 @@
+// lib/auth.ts
+import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
-const JWT_SECRET = process.env.JWT_SECRET || 'yoursecret'
 
-export function generateToken(payload: any) {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' })
-}
-
-export function verifyToken(token: string) {
+export function withAuth(req: NextRequest) {
+  const token = req.cookies.get('authToken')?.value
   try {
-    return jwt.verify(token, JWT_SECRET)
-  } catch (err) {
+    return jwt.verify(token || '', process.env.JWT_SECRET!)
+  } catch {
     return null
   }
 }

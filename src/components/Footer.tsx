@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="w-full bg-background border-t py-6 text-sm text-muted-foreground">
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 px-4">
         <p className="text-center sm:text-left">
-          &copy; {new Date().getFullYear()} <span className="font-medium text-foreground">Artistly.com</span>. For demo purposes only.
+          &copy; {new Date().getFullYear()} <span className="font-medium text-foreground">Artistly.com</span>.
         </p>
 
         <div className="flex gap-4 text-muted-foreground">
