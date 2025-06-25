@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <FilterProvider>
+          <FilterProvider>  {/* Ensure this is wrapping your pages correctly */}
             <Header />
             <ThemeToggle />
             <main className="min-h-screen">{children}</main>

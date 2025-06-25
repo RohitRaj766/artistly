@@ -1,3 +1,22 @@
+type Artist = {
+  _id?: string
+  name: string
+  bio: string
+  categories: string[]
+  languages: string[]
+  fee: string
+  location: string
+  image?: string
+}
+
+type Props = {
+  artists: Artist[]
+  onDelete?: (id: string) => void
+  page: number
+  pageSize: number
+  onPageChange: (newPage: number) => void
+}
+
 export default function ArtistTable({
   artists,
   onDelete,
@@ -25,7 +44,10 @@ export default function ArtistTable({
         </thead>
         <tbody>
           {currentPageData.map((artist) => (
-            <tr key={artist._id} className="border-t hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
+            <tr
+              key={artist._id}
+              className="border-t hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700"
+            >
               <td className="p-3">
                 {artist.image ? (
                   <img

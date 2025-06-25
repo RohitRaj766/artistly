@@ -9,15 +9,16 @@ const categoriesOptions = ['Singer', 'DJ', 'Dancer', 'Speaker']
 const languagesOptions = ['English', 'Hindi', 'Spanish', 'French', 'German']
 const feeRanges = ['₹1L–3L', '₹2L–4L', '₹5L–7L']
 
+// Define the validation schema using Yup
 const schema = yup.object({
   name: yup.string().required('Name is required'),
   bio: yup.string().required('Bio is required'),
-  categories: yup.array().min(1, 'Select at least one category'),
-  languages: yup.array().min(1, 'Select at least one language'),
+  categories: yup.array().min(1, 'Select at least one category').required('At least one category is required'),
+  languages: yup.array().min(1, 'Select at least one language').required('At least one language is required'),
   fee: yup.string().required('Fee range is required'),
   location: yup.string().required('Location is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().min(6, 'Password must be at least 6 chars').required('Password is required'),
+  password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
 })
 
 type FormValues = yup.InferType<typeof schema>
@@ -35,6 +36,7 @@ export default function OnboardPage() {
 
   const [imagePreview, setImagePreview] = useState<string | null>(null)
 
+  // Submit handler
   const onSubmit = async (data: FormValues) => {
     if (!imagePreview) {
       alert('Please upload a profile image first.')
@@ -68,6 +70,7 @@ export default function OnboardPage() {
     }
   }
 
+  // Image upload handler
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return

@@ -1,4 +1,3 @@
-import { Artist } from '@/types'
 import {
   Card,
   CardContent,
@@ -10,6 +9,17 @@ import {
 import { Button } from '@/components/ui/button'
 import { MapPin, DollarSign, User } from 'lucide-react'
 
+type Artist = {
+  _id?: string
+  name: string
+  bio: string
+  categories: string[]
+  languages: string[]
+  fee: string
+  location: string
+  image?: string
+}
+
 type Props = {
   artist: Artist
 }
@@ -18,22 +28,23 @@ export default function ArtistCard({ artist }: Props) {
   return (
     <Card className="hover:shadow-md transition-shadow h-full overflow-hidden">
       {/* Artist Image */}
-     <div className="h-48 w-full overflow-hidden">
-  <img
-    src={artist.image || '/avatarDef.jpeg'} 
-    alt={artist.name}
-    className="w-full h-48 object-cover rounded-t"
-    loading='lazy'
-  />
-</div>
-
+      <div className="h-48 w-full overflow-hidden">
+        <img
+          src={artist.image || '/avatarDef.jpeg'}
+          alt={artist.name}
+          className="w-full h-48 object-cover rounded-t"
+          loading="lazy"
+        />
+      </div>
 
       <CardHeader>
         <CardTitle className="text-indigo-700 flex items-center gap-2">
           <User className="w-5 h-5 text-indigo-500" />
           {artist.name}
         </CardTitle>
-        <CardDescription className="capitalize">{artist.category}</CardDescription>
+        <CardDescription className="capitalize">
+          {artist.categories || 'Uncategorized'}
+        </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-2 text-sm text-muted-foreground">
@@ -43,7 +54,7 @@ export default function ArtistCard({ artist }: Props) {
         </div>
         <div className="flex items-center gap-2">
           <DollarSign className="w-4 h-4" />
-          <span>{artist.price}</span>
+          <span>{artist.fee}</span>
         </div>
       </CardContent>
 

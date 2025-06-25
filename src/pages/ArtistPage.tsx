@@ -3,10 +3,21 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useFilterContext } from '@/context/FilterContext'
-import { Artist } from '@/types'
 import ArtistCard from '@/components/ArtistCard'
 import FilterBlock from '@/components/FilterBlock'
 import { Button } from '@/components/ui/button'
+import { FilterProvider } from '@/context/FilterContext'
+
+type Artist = {
+  _id?: string
+  name: string
+  bio: string
+  categories: string[] // An array of categories
+  languages: string[]
+  fee: string
+  location: string
+  image?: string
+}
 
 export default function ArtistListingPage() {
   const searchParams = useSearchParams()
@@ -33,11 +44,11 @@ export default function ArtistListingPage() {
         const res = await fetch('/api/onboard')
         const data = await res.json()
 
-        const formatted = data.map((artist: unknown, index: number) => ({
+        const formatted = data.map((artist: Artist, index: number) => ({
           id: artist._id || index,
           name: artist.name,
           bio: artist.bio,
-          category: artist.categories?.[0] || '',
+          categories: artist.categories || [],
           languages: artist.languages,
           location: artist.location,
           price: artist.fee,
@@ -49,7 +60,7 @@ export default function ArtistListingPage() {
       } catch (error) {
         console.error('Error loading artists:', error)
       } finally {
-        setLoading(false) 
+        setLoading(false)
       }
     }
 
@@ -60,11 +71,18 @@ export default function ArtistListingPage() {
   useEffect(() => {
     let result = [...artists]
 
-    if (category) result = result.filter((a) => a.category === category)
-    if (location) result = result.filter((a) =>
-      a.location.toLowerCase().includes(location.toLowerCase())
-    )
-    if (price) result = result.filter((a) => a.price.includes(price))
+    if (category) {
+      // Check if the category is inside the artist's categories array
+      result = result.filter((a) => a.categories.includes(category))
+    }
+    if (location) {
+      result = result.filter((a) =>
+        a.location.toLowerCase().includes(location.toLowerCase())
+      )
+    }
+    if (price) {
+      result = result.filter((a) => a.fee.includes(price))
+    }
 
     setFilteredArtists(result)
     setCurrentPage(1)
@@ -77,8 +95,8 @@ export default function ArtistListingPage() {
   const totalPages = Math.ceil(filteredArtists.length / artistsPerPage)
 
   return (
+    <FilterProvider>
     <section className="max-w-6xl mx-auto px-4 py-10 space-y-8">
-      {/* Heading */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
           Available Artists
@@ -102,7 +120,7 @@ export default function ArtistListingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentArtists.length > 0 ? (
               currentArtists.map((artist) => (
-                <ArtistCard key={artist.id} artist={artist} />
+                <ArtistCard key={artist._id} artist={artist} />
               ))
             ) : (
               <p className="text-center text-gray-500 dark:text-gray-300 col-span-full py-10">
@@ -118,7 +136,7 @@ export default function ArtistListingPage() {
                 variant="outline"
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                 disabled={currentPage === 1}
-                className='cursor-pointer'
+                className="cursor-pointer"
               >
                 ← Prev
               </Button>
@@ -129,7 +147,7 @@ export default function ArtistListingPage() {
                 variant="outline"
                 onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className='cursor-pointer'
+                className="cursor-pointer"
               >
                 Next →
               </Button>
@@ -138,5 +156,6 @@ export default function ArtistListingPage() {
         </>
       )}
     </section>
+    </FilterProvider>
   )
 }

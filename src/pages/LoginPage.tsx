@@ -41,7 +41,12 @@ export default function ManagerLogin() {
 
       router.push('/dashboard')
     } catch (err: unknown) {
-      setError(err.message)
+      // Handling the error type by narrowing it to Error
+      if (err instanceof Error) {
+        setError(err.message)
+      } else {
+        setError(String(err)) // Fallback to string conversion for unknown errors
+      }
     } finally {
       setLoading(false)
     }
