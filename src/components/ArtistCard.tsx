@@ -9,16 +9,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { MapPin, DollarSign, User } from 'lucide-react'
 
-type Artist = {
-  _id?: string
-  name: string
-  bio: string
-  categories: string[]
-  languages: string[]
-  fee: string
-  location: string
-  image?: string
-}
+import { Artist } from '@/types/Artist'
 
 type Props = {
   artist: Artist
