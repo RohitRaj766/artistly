@@ -4,7 +4,7 @@ export type Artist = {
   bio: string
   categories: string[]
   languages: string[]
-  fee: string
+  price: string
   location: string
   image?: string
 }

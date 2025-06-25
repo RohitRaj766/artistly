@@ -38,7 +38,7 @@ export default function ArtistListingContent() {
           categories: artist.categories || [],
           languages: artist.languages,
           location: artist.location,
-          price: artist.fee,
+          price: artist.price,
           image: artist.image,
         }));
         setArtists(formatted);
@@ -64,7 +64,7 @@ export default function ArtistListingContent() {
       );
     }
     if (price) {
-      result = result.filter((a) => a.fee.includes(price));
+      result = result.filter((a) => a.price.includes(price));
     }
     setFilteredArtists(result);
     setCurrentPage(1);

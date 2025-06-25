@@ -4,17 +4,7 @@ import { useEffect, useState } from 'react'
 import ArtistTable from '@/components/ArtistTable'
 import LogoutButton from '@/components/Logout'
 import { useRouter } from 'next/navigation'
-
-type Artist = {
-  _id?: string
-  name: string
-  bio: string
-  categories: string[]
-  languages: string[]
-  fee: string
-  location: string
-  image?: string
-}
+import {Artist} from '@/types/Artist'
 
 export default function DashboardPage() {
   const [artists, setArtists] = useState<Artist[]>([])

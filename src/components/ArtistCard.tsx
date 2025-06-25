@@ -16,6 +16,7 @@ type Props = {
 }
 
 export default function ArtistCard({ artist }: Props) {
+  console.log("asdfasdf :: ", artist)
   return (
     <Card className="hover:shadow-md transition-shadow h-full overflow-hidden">
       {/* Artist Image */}
@@ -45,7 +46,7 @@ export default function ArtistCard({ artist }: Props) {
         </div>
         <div className="flex items-center gap-2">
           <DollarSign className="w-4 h-4" />
-          <span>{artist.fee}</span>
+          <span>{artist.price}</span>
         </div>
       </CardContent>
 
