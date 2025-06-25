@@ -16,7 +16,7 @@ export async function GET() {
 
 export async function DELETE(req: NextRequest) {
   const payload = withAuth(req)
-  if (!payload?.role) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!payload) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')!
