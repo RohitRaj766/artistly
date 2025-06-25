@@ -1,10 +1,14 @@
-import ArtistListingPage from "@/pages/ArtistPage";
-import { FilterProvider } from '@/context/FilterContext'
+'use client';
 
-export default function page(){
-  return(
+import { FilterProvider } from '@/context/FilterContext';
+import ArtistListingPage from '@/components/ArtistListingPage';
+import { Suspense } from 'react';
+export default function ArtistsPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-10">Loading filters...</div>}>
     <FilterProvider>
-    <ArtistListingPage/>
+      <ArtistListingPage />
     </FilterProvider>
-  )
+    </Suspense>
+  );
 }

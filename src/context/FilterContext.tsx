@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 
 type FilterContextType = {
   category: string
@@ -24,6 +24,20 @@ export function FilterProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState('')
   const [location, setLocation] = useState('')
   const [price, setPrice] = useState('')
+
+  useEffect(() => {
+   
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const queryCategory = params.get('category') || ''
+      const queryLocation = params.get('location') || ''
+      const queryPrice = params.get('price') || ''
+
+      setCategory(queryCategory)
+      setLocation(queryLocation)
+      setPrice(queryPrice)
+    }
+  }, [])
 
   function clearFilters() {
     setCategory('')
